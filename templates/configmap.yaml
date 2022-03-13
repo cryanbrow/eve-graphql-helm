@@ -1,11 +1,36 @@
 apiVersion: v130893
 data:
   config.yml: |-
+    application:
+      name: 'eve-graphql-go'
+      environment: 'test'
+    server:
+      port: 8080
     redis:
       url: '192.168.0.201'
       password: ''
       user: ''
       port: '30893'
+    cache:
+      impl: 'redis'
+    data:
+      location: `esi`
+    esi:
+      default:
+        queryParams:
+        - key: 'datasource'
+          value: 'tranquility'
+        - key: 'language'
+          value: 'en'
+        url: 'https://esi.evetech.net/latest'
+    jaeger:
+      enabled: true
+      protocol: 'http'
+      hostname: 'localhost'
+      port: '14268'
+      route: 'api/traces'
+      sample:
+        percent: 99
 kind: ConfigMap
 metadata:
   creationTimestamp: null
